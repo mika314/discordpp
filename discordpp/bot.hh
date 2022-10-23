@@ -40,7 +40,6 @@ namespace discordpp {
                 exit(1);
             }
             gotACK = false;
-            std::cout << "Sending heartbeat..." << std::endl;
             pacemaker_ = std::make_unique<boost::asio::steady_timer>(
                     *aioc,
                     std::chrono::steady_clock::now() + *heartrate_
@@ -95,7 +94,6 @@ namespace discordpp {
                     break;
                 case 11: // Heartbeat ACK:      sent immediately following a client heartbeat that was received
                     gotACK = true;
-                    std::cout << "Heartbeat Successful." << std::endl;
                     break;
                 default:
                     std::cerr << "Unexpected opcode " << payload["op"] << "! Message:\n"
